@@ -2,6 +2,8 @@ package com.mundiflora.api.auth
 
 
 import com.mundiflora.api.config.JwtService
+import com.mundiflora.api.dto.UserDto
+import com.mundiflora.api.user.Role
 import com.mundiflora.api.user.User
 import com.mundiflora.api.user.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -33,9 +35,8 @@ class AuthenticationService {
             role= request.role
 
         }
-
-        repository?.save(user)
-        val jwtToken = jwtService?.generateToken(user)
+        repository.save(user)
+        val jwtToken = jwtService.generateToken(user,user.role)
         return AuthenticationResponse().apply {
             token=jwtToken
         }
@@ -43,16 +44,29 @@ class AuthenticationService {
     }
 
     fun authenticate(request: AuthenticationRequest): AuthenticationResponse? {
-        authenticationManager!!.authenticate(
+        authenticationManager.authenticate(
             UsernamePasswordAuthenticationToken(
                 request.email,
                 request.password
             )
         )
-        val user = repository?.findByEmail(request.email)?.orElseThrow()
-        val jwtToken: String? = user?.let { jwtService?.generateToken(it) }
+        val user = repository.findByEmail(request.email)?.orElseThrow()
+        val jwtToken: String? = user?.let { jwtService.generateToken(it,user.role) }
         return AuthenticationResponse().apply {
             token=jwtToken
         }
     }
+
+    fun getUser(emailRequest: String): UserDto? {
+        val user =repository.findByEmail(emailRequest)?.orElseThrow()
+        val response = UserDto().apply {
+            id=user?.id
+            email=user?.email!!
+            role=user?.role.toString()
+        }
+        return response
+
+    }
+
+
 }

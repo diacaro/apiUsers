@@ -7,7 +7,8 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/v1/auth/clientes")
+// @RequestMapping("/api/v1/auth/clientes")
+@RequestMapping("/clientes")
 //La siguiente linea habilita el acceso desde la api
 @CrossOrigin(methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT, RequestMethod.DELETE])
 

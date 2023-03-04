@@ -25,10 +25,10 @@ class ClienteController {
     fun listById(@PathVariable id:Long?):Clientes?{
         return clientesService.listById(id)
     }
-//    @GetMapping ("/clientes/{clientesId}")
-//    fun listByClientes(@PathVariable("clientesId") clientesId: Long):List<Clientes>{
-//        return clientesService.listByClientesId(clientesId)
-//    }
+    @GetMapping ("/{word}/search")
+    fun listByClientes(@PathVariable("word") word: String):List<Clientes>{
+        return clientesService.listByName(word)
+    }
 
     @PostMapping
     fun save(@RequestBody clientes: Clientes): Clientes {

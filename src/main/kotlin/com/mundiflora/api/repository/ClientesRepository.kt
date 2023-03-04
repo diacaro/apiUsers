@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository
 interface ClientesRepository: JpaRepository <Clientes , Long> {
     fun findById (id: Long?): Clientes?
 
-//    @Query(nativeQuery = true)
-//    fun listByClientesId (ClientesId: Long?): List<Clientes>
+    @Query(nativeQuery = true)
+    fun listByName (word: String?): List<Clientes>
 }

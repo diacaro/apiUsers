@@ -22,9 +22,9 @@ class ClientesService {
 //    fun listView ():List <ProductosView>{
 //        return productosRepositoryView.findAll()
 //    }
-//    fun listByClientesId (id:Long?):List <Clientes> {
-//        return clientesRepository.listByClientesId(id)
-//    }
+    fun listByName (word:String?):List <Clientes> {
+        return clientesRepository.listByName(word)
+    }
 
     fun save (clientes: Clientes): Clientes{
         return clientesRepository.save(clientes)

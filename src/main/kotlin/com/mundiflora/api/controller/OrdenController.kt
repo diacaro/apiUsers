@@ -43,6 +43,10 @@ class OrdenController {
     fun listById (@PathVariable("id") id: Long): Orden?{
         return ordenService.listById(id)
     }
+    @GetMapping("/{id}/cliente")
+    fun listByIdClientes (@PathVariable("id") id: Long): OrdenView ?{
+        return ordenService.listByIdOrdend(id)
+    }
 
     @PostMapping
     fun save(@RequestBody orden: Orden): Orden {

@@ -29,6 +29,9 @@ class OrdenService {
     fun listById (id:Long?):Orden? {
         return ordenRepository.findById(id)
     }
+    fun listByIdOrdend (id:Long?):OrdenView? {
+        return ordenViewRepository.findById(id)
+    }
 
     fun listOrdenClientes ():List<OrdenView>{
         return ordenViewRepository.findAll()

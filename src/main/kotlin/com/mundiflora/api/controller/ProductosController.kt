@@ -1,4 +1,5 @@
 package com.mundiflora.api.controller
+import com.mundiflora.api.model.Clientes
 import com.mundiflora.api.model.Productos
 import com.mundiflora.api.model.ProductosView
 import com.mundiflora.api.service.ProductosService
@@ -21,7 +22,10 @@ class ProductosController {
     fun list():List<Productos>{
         return productosService.list()
     }
-
+    @GetMapping ("/{word}/search")
+    fun listByProductos(@PathVariable("word") word: String):List<ProductosView>{
+        return productosService.listByName(word)
+    }
     @GetMapping ("/{id}")
     fun listById(@PathVariable id:Long?):Productos?{
         return productosService.listById(id)

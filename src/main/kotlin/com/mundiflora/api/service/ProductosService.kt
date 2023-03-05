@@ -1,5 +1,6 @@
 package com.mundiflora.api.service
 
+import com.mundiflora.api.model.Clientes
 import com.mundiflora.api.model.Productos
 import com.mundiflora.api.model.ProductosView
 import com.mundiflora.api.repository.ProductosRepository
@@ -34,6 +35,9 @@ class ProductosService {
     }
     fun listById (id:Long?):Productos? {
         return productosRepository.findById(id)
+    }
+    fun listByName (word:String?):List <ProductosView> {
+        return productosRepositoryView.listByName(word)
     }
     fun listView ():List <ProductosView>{
         return productosRepositoryView.findAll()
